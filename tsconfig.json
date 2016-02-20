@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "out": "index.js",
+    "sourceMap": true
+  },
+  "files": ["index.ts"]
+}
