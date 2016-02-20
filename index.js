@@ -7,13 +7,15 @@ var QueryParamUtil = (function () {
      * Finds a specific key and returns it's value
      * If not set, will return a default value
      *
-     * @param name
-     * @param default_val
-     * @returns {any}
+     * @param {string} name
+     * @param {any} [default_val=null]
+     * @param query_string?
+     * @returns string[]|string
      */
-    QueryParamUtil.find = function (name, default_val) {
+    QueryParamUtil.find = function (name, default_val, query_string) {
         if (default_val === void 0) { default_val = null; }
-        return this.all()[name] || default_val;
+        if (query_string === void 0) { query_string = window.location.search; }
+        return this.all(query_string)[name] || default_val;
     };
     /**
      * Fills an object with all key/val pairs from a query string
@@ -32,6 +34,12 @@ var QueryParamUtil = (function () {
             .map(function (x) { return x.split('='); })
             .reduce(QueryParamUtil._toObject, {});
     };
+    /**
+     * Takes an object of key/vals and returns an encoded url param string
+     *
+     * @param {Object} values
+     * @returns {string}
+     */
     QueryParamUtil.set = function (values) {
         var keys = Object.keys(values);
         return keys.reduce(QueryParamUtil._encode(values), '');

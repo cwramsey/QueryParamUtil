@@ -7,12 +7,13 @@ export class QueryParamUtil {
      * Finds a specific key and returns it's value
      * If not set, will return a default value
      *
-     * @param name
-     * @param default_val
-     * @returns {any}
+     * @param {string} name
+     * @param {any} [default_val=null]
+     * @param query_string?
+     * @returns string[]|string
      */
-    public static find(name:string, default_val:any = null):any {
-        return this.all()[name] || default_val;
+    public static find(name:string, default_val:any = null, query_string:string = window.location.search):string[]|string {
+        return this.all(query_string)[name] || default_val;
     }
 
     /**
@@ -33,6 +34,12 @@ export class QueryParamUtil {
                            .reduce(QueryParamUtil._toObject, {});
     }
 
+    /**
+     * Takes an object of key/vals and returns an encoded url param string
+     *
+     * @param {Object} values
+     * @returns {string}
+     */
     public static set(values:Object):string {
         const keys = Object.keys(values);
 
@@ -49,7 +56,7 @@ export class QueryParamUtil {
                 encoded = `${encoded}&${key_name}=${values[key_name]}`;
             }
 
-            return encoded.substring(0,1) === '&' ? encoded.substring(1, encoded.length) : encoded;
+            return encoded.substring(0, 1) === '&' ? encoded.substring(1, encoded.length) : encoded;
         }
     }
 
