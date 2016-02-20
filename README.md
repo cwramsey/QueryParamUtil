@@ -9,6 +9,10 @@
 
 `$ npm i QueryParamUtil`
 
+### Tests
+
+`$ cd __path_to_project__ && mocha`
+
 ### Usage
 
 `const qp = require('QueryParamUtil').QueryParamUtil;`
