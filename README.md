@@ -26,13 +26,13 @@ If not set, will return a default value
 
 **Parameters**
 
-**name**: `string`, Finds a specific key and returns it's value
+**name**: `string`
 If not set, will return a default value
 
-**default_val**: `any`, Finds a specific key and returns it's value
+**default_val**: `any`
 defaults to null if not specified
 
-**query_string?**: , Finds a specific key and returns it's value
+**query_string?**: `string`
 defaults to window.location.search if not specified
 
 **Returns**: string[]|string
@@ -53,7 +53,7 @@ defaults to window.location.search if not specified
 
 **Parameters**
 
-**query_string**: `string`, Fills an object with all key/val pairs from a query string
+**query_string**: `string`
 defaults to window.location.search if not specified
 
 **Returns**: Object
@@ -81,7 +81,7 @@ Takes an object of key/vals and returns an encoded url param string
 
 **Parameters**
 
-**values**: `Object`, Takes an object of key/vals and returns an encoded url param string
+**values**: `Object`
 
 **Returns**: `string`
 
