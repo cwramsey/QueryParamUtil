@@ -30,12 +30,20 @@ If not set, will return a default value
 If not set, will return a default value
 
 **default_val**: `any`, Finds a specific key and returns it's value
-If not set, will return a default value
+defaults to null if not specified
 
 **query_string?**: , Finds a specific key and returns it's value
-If not set, will return a default value
+defaults to window.location.search if not specified
 
 **Returns**: string[]|string
+
+```js
+// uses window.location.search
+const myJob = qp.find('job');
+
+// use your own query string
+const myJob = qp.find('job', null, 'name=chris&job=developer');
+```
 
 
 #### all(query_string) 
@@ -50,6 +58,22 @@ defaults to window.location.search if not specified
 
 **Returns**: Object
 
+```js
+// uses window.location.search
+const params = qp.all();
+
+// use your own query string
+const params = qp.all('name=chris&job=developer&skills[]=js&skills[]=php');
+
+/*
+    {
+        name: 'chris',
+        job: 'developer',
+        skills: ['js', 'php']
+    }
+*/
+```
+
 
 #### set(values) 
 
@@ -60,3 +84,11 @@ Takes an object of key/vals and returns an encoded url param string
 **values**: `Object`, Takes an object of key/vals and returns an encoded url param string
 
 **Returns**: `string`
+
+```js
+window.location.search = qp.set({name:'chris',job:'developer',skills:['js','php']);
+
+/*
+    returns 'name=chris&job=developer&skills[]=js&skills[]=php&skills[]=functional'
+*/
+```
